@@ -2,6 +2,9 @@
 
 [Fork aurto](https://github.com/alexheretic/aurto).
 
+- devtools
+- [aurutils](https://github.com/AladW/aurutils)
+
 Edit path.
 
 ```bash
