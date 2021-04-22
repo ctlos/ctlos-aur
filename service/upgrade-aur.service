@@ -4,4 +4,4 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/ctlos-aur/aurdb.sh upgrade
+ExecStart=/ctlos-aur/repo.sh upgrade

@@ -13,11 +13,11 @@ config/pacman.conf
 service/upgrade-aur.service
 
 # src_dir && repo_name
-aurdb.sh
+repo.sh
 ```
 
 Help.
 
 ```bash
-aurdb.sh
+repo.sh
 ```

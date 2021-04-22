@@ -1,10 +1,13 @@
 #!/bin/bash
 # Fork https://github.com/alexheretic/aurto
 
-# rsync -cauv --delete --info=stats2 --exclude={"aurdb.sh.files","*.files.tar*","aurdb.sh.db","*.db.tar*"} /var/cache/pacman/aurdb.sh/ /home/cretm/app/dev.ctlos.ru/ctlos-aur
+# rsync -cauv --delete --info=stats2 --exclude={"ctlos-aur.files","*.files.tar*","ctlos-aur.db","*.db.tar*"} /var/cache/pacman/ctlos-aur/ /home/cretm/app/cloud.ctlos.ru/ctlos-aur
 
 # find './' -maxdepth 1 -type f -regex '.*\.\(zst\|xz\)' -exec gpg -b '{}' \;
 # find './' -type f -exec gpg --pinentry-mode loopback --passphrase=${GPG_PASS} -b '{}' \;
+
+## makepkg arch-chroot
+# aur sync --chroot
 
 ### disable gpg sign
 # rm (--sign)
@@ -12,14 +15,19 @@
 ## add /etc/pacman.conf
 # SigLevel = Optional TrustAll
 
+### arch-chroot nopass
+# /etc/sudoers
+# user_name ALL = NOPASSWD: SETENV: /usr/bin/makechrootpkg
+# user_name ALL = NOPASSWD: /usr/bin/arch-nspawn
+
 command=${1:-}
 arg1=${2:-}
 
 src_dir=/home/cretm/ctlos-aur
-repo_dir="$src_dir"/repo
+repo_dir=/home/cretm/app/cloud.ctlos.ru/ctlos-aur
 repo_name=ctlos-aur
-makepkg_conf="$src_dir"/conf/makepkg.conf
-pacman_conf="$src_dir"/conf/pacman.conf
+makepkg_conf=/home/cretm/ctlos-aur/conf/makepkg.conf
+pacman_conf=/home/cretm/ctlos-aur/conf/pacman.conf
 
 ## disable chroot
 export chroot_arg='--chroot'
@@ -27,16 +35,15 @@ export chroot_arg='--chroot'
   # export chroot_arg=''
 # fi
 
-if test -t 1; then
-  function green { echo -e "\\e[32m$*\\e[39m"; }
-  function cyan { echo -e "\\e[36m$*\\e[39m"; }
-  function red { echo -e "\\e[31m$*\\e[39m"; }
-  function yellow { echo -e "\\e[33m$*\\e[39m"; }
-  function dim { echo -e "\\e[2m$*\\e[22m"; }
-fi
+post_repo() {
+  rm "$repo_dir"/"$repo_name".{db,files}
+  cp -f "$repo_dir"/"$repo_name".db.tar.zst "$repo_dir"/"$repo_name".db
+  cp -f "$repo_dir"/"$repo_name".files.tar.zst "$repo_dir"/"$repo_name".files
+  sudo pacsync $repo_name >/dev/null;
+}
 
 if [ "$command" == "init" ]; then
-  repo-add "$repo_dir"/"$repo_name".db.tar.gz
+  repo-add "$repo_dir"/"$repo_name".db.tar.zst
 
   echo 'Adding & enabling systemd timer' >&2
   service_dir=$HOME/.config/systemd/user
@@ -48,7 +55,7 @@ if [ "$command" == "init" ]; then
 
 elif [ "$command" == "conf" ]; then
   if [[ $EUID -ne 0 ]]; then
-    echo "run:    sudo aurdb.sh conf"
+    echo "run:    sudo repo.sh conf"
     exit 1
   fi
   echo
@@ -77,6 +84,8 @@ elif [ "$command" == "add" ] && [ -n "$arg1" ]; then
     packages_and_deps="$packages_and_deps
   $(echo "$i" | aur depends 2>/dev/null | cut -f2 | sort | comm -12 - <(aur pkglist | sort))"
   done
+
+  repo-add -n -R -q "$repo_dir"/"$repo_name".db.tar.zst "$repo_dir"/*.pkg.tar.zst 2>/dev/null;
   sudo pacsync $repo_name >/dev/null;
 
   echo "Running: aur sync --no-view --no-confirm ${chroot_arg:---no-ver} --database=$repo_name --makepkg-conf=${makepkg_conf} --pacman-conf=${pacman_conf} ${*:2}" >&2
@@ -84,35 +93,37 @@ elif [ "$command" == "add" ] && [ -n "$arg1" ]; then
     --database="$repo_name" \
     --makepkg-conf="${makepkg_conf}" \
     --pacman-conf="${pacman_conf}" "${@:2}"
-  sudo pacsync $repo_name >/dev/null;
-  echo -e "aurdb.sh: To install run: sudo pacman -Syy "${*:2}"" >&2
+  post_repo
+  echo -e "repo.sh: To install run: sudo pacman -Syy "${*:2}"" >&2
 
 elif [ "$command" == "addpkg" ] && [ -n "$arg1" ]; then
-  repo-add -n -R "$repo_dir"/"$repo_name".db.tar.gz "${@:2}"
+  repo-add -n -R "$repo_dir"/"$repo_name".db.tar.zst "${@:2}"
   for pkg in "${@:2}"*; do
     cp "$pkg" "$repo_dir"/
   done
-  sudo pacsync $repo_name >/dev/null;
-  echo -e "aurdb.sh: To install run: sudo pacman -Syy PACKAGES..." >&2
+  post_repo
+  echo -e "repo.sh: To install run: sudo pacman -Syy PACKAGES..." >&2
 
 elif [ "$command" == "remove" ] && [ -n "$arg1" ]; then
   removed=""
   for pkg in "${@:2}"; do
-    if remove_out=$(repo-remove "$repo_dir"/"$repo_name".db.tar.gz "$pkg" 2>&1); then
+    if remove_out=$(repo-remove "$repo_dir"/"$repo_name".db.tar.zst "$pkg" 2>&1); then
       if [[ $remove_out = *"ERROR"* ]]; then
-        echo "aurdb.sh: $pkg not found" >&2
+        echo "repo.sh: $pkg not found1" >&2
       else
         rm -rf "$repo_dir"/"$pkg"*.pkg.* || true
         removed="$pkg $removed"
       fi
     else
-      echo "aurdb.sh: "$pkg" not found" >&2
+      echo "repo.sh: "$pkg" not found2" >&2
+      repo-remove "$repo_dir"/"$repo_name".db.tar.zst "$pkg" 2>&1
       rm -rf "$repo_dir"/"$pkg"*.pkg.* || true
+      post_repo
     fi
   done
   if [ -n "$removed" ]; then
     echo -e "Removed $removed" >&2
-    sudo pacsync $repo_name >/dev/null;
+    post_repo
   fi
 
 elif [ "$command" == "upgrade" ]; then
@@ -124,7 +135,6 @@ elif [ "$command" == "upgrade" ]; then
     fi
   }
   trap clean_aurutils_cache EXIT
-  sudo pacsync $repo_name >/dev/null;
 
   echo "Running: aur sync --no-view --no-confirm $chroot_arg --database=$repo_name --makepkg-conf=${makepkg_conf} --pacman-conf=${pacman_conf} --upgrades" >&2
   aur sync --no-view --no-confirm "$chroot_arg" \
@@ -147,10 +157,9 @@ elif [ "$command" == "upgrade" ]; then
 
       mapfile -t git_outdated < <("$src_dir"/aur-vercmp-devel --database="$repo_name" | cut -d: -f1)
       if [ ${#git_outdated[@]} -gt 0 ]; then
-        repo-remove "$repo_dir"/"$repo_name".db.tar.gz "${git_outdated[@]}"
+        repo-remove "$repo_dir"/"$repo_name".db.tar.zst "${git_outdated[@]}"
         for i in ${git_outdated[@]}; do
           rm -rf "$repo_dir"/${i}*.pkg.*
-          # repo-add -n -R "$repo_dir"/"$repo_name".db.tar.gz "$repo_dir"/${i}*.pkg.*
         done
         aur sync --no-view --no-confirm "${chroot_arg:---no-ver}" \
           --database="$repo_name" \
@@ -163,36 +172,36 @@ elif [ "$command" == "upgrade" ]; then
       fi
     fi
   fi
-  echo " aurdb.sh: upgrade Repo Done!" >&2
-  sudo pacsync $repo_name >/dev/null;
+  post_repo
+  echo " repo.sh: upgrade Repo Done!" >&2
   paccache -rk1 -c "$repo_dir"
 
 elif [ "$command" == "list" ]; then
   aur repo --database="$repo_name" --list
 
 elif [ "$command" == "uninstall" ]; then
-  echo "aurdb.sh: disable systemd timer" >&2
+  echo "repo.sh: disable systemd timer" >&2
   systemctl --user disable --now check-aur-git-trigger.timer || true
   systemctl --user disable --now upgrade-aur.timer || true
   systemctl --user disable --now upgrade-aur-startup.timer || true
   systemctl --user disable upgrade-aur.service || true
 
-  echo "aurdb.sh: Clean $repo_dir" >&2
+  echo "repo.sh: Clean $repo_dir" >&2
   rm -rf $repo_dir/* 2>/dev/null || true
 
-  echo "aurdb.sh: Removing $repo_name /etc/pacman.conf" >&2
+  echo "repo.sh: Removing $repo_name /etc/pacman.conf" >&2
   sudo sed -i "/\[$repo_name\]/,+2d" /etc/pacman.conf
 
-  echo "aurdb.sh: Removing ${SUDO_USER:-$USER} ALL = NOPASSWD /etc/sudoers" >&2
+  echo "repo.sh: Removing ${SUDO_USER:-$USER} ALL = NOPASSWD /etc/sudoers" >&2
   sudo sed -i "/makechrootpkg/,+3d" /etc/sudoers
 
 elif [ "$command" == "status" ]; then
   echo_status() {
-    echo "$repo_name $(cyan "$(pacman -Sql $repo_name | wc -l)") packages: $(cyan pacman -Sl $repo_name)"
+    echo "$repo_name "$(pacman -Sql $repo_name | wc -l)" packages: pacman -Sl $repo_name"
     echo
     pacman -Sl $repo_name --color=always | sed 's/^/  /'
     echo
-    echo "Timers: $(cyan systemctl --user list-timers)"
+    echo "Timers: systemctl --user list-timers"
     list_timers=$(systemctl --user list-timers -a)
     echo "  $(echo "$list_timers" | head -n1 | cut -c1-"$COLUMNS")"
     echo "$list_timers" \
@@ -200,12 +209,12 @@ elif [ "$command" == "status" ]; then
      | sed 's/^/  /' \
      | cut -c1-"$COLUMNS"
     echo
-    echo "Recent logs: $(cyan journalctl --user -eu upgrade-aur --since \'1.5 hours ago\')"
+    echo "Recent logs: journalctl --user -eu upgrade-aur --since \'1.5 hours ago\'"
     journalctl --user -eu upgrade-aur --since '1.5 hours ago' \
      | sed 's/^/  /' \
      | cut -c1-"$COLUMNS"
     echo
-    echo "Log warnings: $(cyan journalctl --user -eu upgrade-aur --since \'1 week ago\' \| grep -v \'Skipping all source file integrity\' \|  grep -E \'ERROR\|WARNING\' -A5 -B5)"
+    echo "Log warnings: journalctl --user -eu upgrade-aur --since \'1 week ago\' \| grep -v \'Skipping all source file integrity\' \|  grep -E \'ERROR\|WARNING\' -A5 -B5"
     log_warns=$(
       journalctl --user -eu upgrade-aur --since '1 week ago' \
        | grep -v 'Skipping all source file integrity' \
@@ -215,7 +224,7 @@ elif [ "$command" == "status" ]; then
     if [ -n "$log_warns" ]; then
       echo "$log_warns" | cut -c1-"$COLUMNS"
     else
-      green '  None'
+      '  None'
     fi
   }
   sudo pacsync $repo_name >/dev/null;
@@ -223,35 +232,35 @@ elif [ "$command" == "status" ]; then
 
 else
   echo "tool repository"
-  echo "  General usage: $(green aurdb.sh add)|$(green addpkg)|$(green remove) $(cyan PACKAGES...)"
+  echo "  General usage: repo.sh add|addpkg|emove PACKAGES..."
   echo
   echo "  Examples"
   echo "  - init: Init repo & systemd (services,timer)"
-  echo "      $(green aurdb.sh) $(cyan init)"
+  echo "      repo.sh init"
   echo
   echo "  - conf: Mod /etc/pacman.conf & /etc/sudoers"
-  echo "      $(red sudo) $(green aurdb.sh) $(cyan conf)"
+  echo "      sudo repo.sh conf"
   echo
   echo "  - add: build aur packages & dependencies, add repo"
-  echo "      $(green aurdb.sh add) $(cyan aurutils)"
+  echo "      repo.sh add aurutils"
   echo
   echo "  - remove: remove packages repo"
-  echo "      $(green aurdb.sh remove) $(cyan aurutils)"
+  echo "      repo.sh remove aurutils"
   echo
   echo "  - addpkg: add package repo"
-  echo "      $(green aurdb.sh addpkg) $(cyan /path/to/aurutils-2.3.1-1-any.pkg.tar.zst)"
+  echo "      repo.sh addpkg /path/to/aurutils-2.3.1-1-any.pkg.tar.zst"
   echo
   echo "  - upgrade: upgrade aur repo"
-  echo "      $(green aurdb.sh) $(cyan upgrade)"
+  echo "      repo.sh upgrade"
   echo
   echo "  - list: list aur repo pkg"
-  echo "      $(green aurdb.sh) $(cyan list)"
+  echo "      repo.sh list"
   echo
   echo "  - status: status repo"
-  echo "      $(green aurdb.sh) $(cyan status)"
+  echo "      repo.sh status"
   echo
   echo "  - uninstall: uninstall repo"
-  echo "      $(green aurdb.sh) $(cyan uninstall)"
+  echo "      repo.sh uninstall"
   echo
   exit 1
 fi
