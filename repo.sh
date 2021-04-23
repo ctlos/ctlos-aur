@@ -224,7 +224,7 @@ elif [ "$command" == "status" ]; then
     if [ -n "$log_warns" ]; then
       echo "$log_warns" | cut -c1-"$COLUMNS"
     else
-      '  None'
+      echo 'None'
     fi
   }
   sudo pacsync $repo_name >/dev/null;
