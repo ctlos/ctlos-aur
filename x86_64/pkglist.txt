@@ -1,9 +1,8 @@
 adwaita-qt
 adwaita-qt6
-alttab-git
 applet-window-buttons-git
 auto-cpufreq
-azpainter
+betterlockscreen
 brainfuck-psiphon-pro-go-bin
 caffeine-ng
 cava
@@ -16,7 +15,6 @@ downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-browser-connector
-gnome-shell-extension-just-perfection-desktop-git
 gotop-bin
 i3lock-color
 imagewriter
@@ -31,7 +29,6 @@ nohang-git
 ob-yml-menu
 obkey-git
 oblogout-py3-git
-oh-my-zsh-git
 otb-uw_ttyp0
 pamac-aur
 pfetch
@@ -40,6 +37,7 @@ qgnomeplatform
 qgnomeplatform-qt6
 qmplay2
 qogir-icon-theme
+qt5-styleplugins
 redsocks
 rofi-greenclip
 rxvt-unicode-pixbuf
@@ -51,6 +49,7 @@ ventoy-bin
 woeusb-ng
 xfce4-docklike-plugin
 xfce4-windowck-plugin-git
+yay-bin
 yq2-bin
 ytfzf
 zsh-fast-syntax-highlighting-git
