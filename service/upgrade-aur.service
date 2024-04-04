@@ -1,0 +1,13 @@
+[Unit]
+Description=upgrade aur pkg
+After=network-online.target
+# After=graphical.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/media/files/github/ctlos/ctlos-aur/repo.sh upgrade
+StandardOutput=journal
+
+[Install]
+# WantedBy=multi-user.target
+WantedBy=default.target

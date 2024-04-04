@@ -1,1 +1,5 @@
-test
+.env
+build/*
+!build/.gitkeep
+pkgs/*
+!pkgs/.gitkeep
