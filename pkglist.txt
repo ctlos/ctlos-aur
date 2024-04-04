@@ -1,5 +1,6 @@
 adwaita-qt
 adwaita-qt6
+alttab-git
 applet-window-buttons-git
 auto-cpufreq
 betterlockscreen
