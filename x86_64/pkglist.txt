@@ -30,6 +30,7 @@ nohang-git
 ob-yml-menu
 obkey-git
 oblogout-py3-git
+oh-my-zsh-git
 otb-uw_ttyp0
 pamac-aur
 pfetch
