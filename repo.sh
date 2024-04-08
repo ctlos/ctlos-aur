@@ -243,6 +243,9 @@ elif [ "$command" == "status" ]; then
     fi
   }
   sudo pacsync $repo_name >/dev/null;
+  cd $src_dir
+  git status
+  echo
   echo_status | less -RF
 
 elif [ "$command" == "list" ]; then
