@@ -34,6 +34,7 @@ oh-my-zsh-git
 otb-uw_ttyp0
 pamac-aur
 pfetch
+pipe-viewer-git
 python-pulsectl
 qgnomeplatform
 qgnomeplatform-qt6
