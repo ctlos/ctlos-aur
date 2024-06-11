@@ -16,6 +16,7 @@ downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-browser-connector
+gnome-shell-extension-just-perfection-desktop
 gotop-bin
 i3lock-color
 imagewriter
