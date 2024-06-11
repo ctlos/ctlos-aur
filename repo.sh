@@ -69,7 +69,7 @@ _init() {
     repoctl reset
   fi
 
-  if [[ $(systemctl --user list-unit-files | grep upgrade-aur >/dev/null) ]]; then
+  if [[ ! $(systemctl --user list-unit-files | grep upgrade-aur >/dev/null) ]]; then
     echo -e "Adding & enabling systemd timer \n" >&2
     service_dir=$HOME/.config/systemd/user
     [ ! -d $service_dir ] && mkdir -p $service_dir
