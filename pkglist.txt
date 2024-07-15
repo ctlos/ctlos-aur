@@ -1,5 +1,4 @@
 adwaita-qt
-adwaita-qt6
 alttab-git
 alttab-git-debug
 applet-window-buttons-git
@@ -39,7 +38,6 @@ pfetch
 pipe-viewer-git
 python-pulsectl
 qgnomeplatform
-qgnomeplatform-qt6
 qmplay2
 qmplay2-debug
 qogir-icon-theme
