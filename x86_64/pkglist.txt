@@ -2,14 +2,12 @@ adwaita-qt
 alttab-git
 alttab-git-debug
 applet-window-buttons-git
-auto-cpufreq
 betterlockscreen
 brainfuck-psiphon-pro-go-bin
 caffeine-ng
 cava
 chrome-gnome-shell
 ckbcomp
-clean-chroot-manager
 clipit
 colorpicker
 downgrade
@@ -22,7 +20,6 @@ i3lock-color
 i3lock-color-debug
 imagewriter
 inxi
-libpamac-aur
 libptytty
 mkinitcpio-openswap
 multilockscreen-git
@@ -33,7 +30,6 @@ ob-yml-menu
 obkey-git
 oblogout-py3-git
 otb-uw_ttyp0
-pamac-aur
 pfetch
 pipe-viewer-git
 python-pulsectl
@@ -56,6 +52,7 @@ xfce4-docklike-plugin
 xfce4-windowck-plugin-git
 xfce4-windowck-plugin-git-debug
 yay-bin
+yay-bin-debug
 yq2-bin
 ytfzf
 zsh-fast-syntax-highlighting-git
