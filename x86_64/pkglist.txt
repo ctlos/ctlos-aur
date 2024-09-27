@@ -4,7 +4,6 @@ alttab-git-debug
 applet-window-buttons-git
 betterlockscreen
 brainfuck-psiphon-pro-go-bin
-caffeine-ng
 cava
 chrome-gnome-shell
 ckbcomp
@@ -31,8 +30,6 @@ obkey-git
 oblogout-py3-git
 otb-uw_ttyp0
 pfetch
-pipe-viewer-git
-python-pulsectl
 qgnomeplatform
 qmplay2
 qmplay2-debug
