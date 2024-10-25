@@ -1,5 +1,4 @@
 adwaita-qt
-alttab-git
 alttab-git-debug
 applet-window-buttons-git
 betterlockscreen
@@ -9,7 +8,6 @@ chrome-gnome-shell
 ckbcomp
 clipit
 colorpicker
-downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-browser-connector
