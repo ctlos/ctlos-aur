@@ -3,7 +3,6 @@ alttab-git-debug
 applet-window-buttons-git
 betterlockscreen
 brainfuck-psiphon-pro-go-bin
-cava
 chrome-gnome-shell
 ckbcomp
 clipit
@@ -29,7 +28,6 @@ oblogout-py3-git
 otb-uw_ttyp0
 pfetch
 qgnomeplatform
-qmplay2
 qmplay2-debug
 qogir-icon-theme
 qt5-styleplugins
