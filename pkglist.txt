@@ -1,4 +1,5 @@
 adwaita-qt
+alttab-git-debug
 applet-window-buttons-git
 auto-cpufreq
 azpainter
