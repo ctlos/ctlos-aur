@@ -7,6 +7,8 @@ azpainter
 azpainter-debug
 betterlockscreen
 brainfuck-psiphon-pro-go-bin
+calamares-dev
+calamares-dev-debug
 cava
 cava-debug
 chrome-gnome-shell
@@ -53,6 +55,7 @@ timeshift
 tint2-git
 ttf-clear-sans
 ventoy-bin
+ventoy-bin-debug
 woeusb-ng
 xfce4-docklike-plugin
 xfce4-windowck-plugin-git-debug
