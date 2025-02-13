@@ -7,8 +7,6 @@ azpainter
 azpainter-debug
 betterlockscreen
 brainfuck-psiphon-pro-go-bin
-calamares-dev
-calamares-dev-debug
 cava
 cava-debug
 chrome-gnome-shell
