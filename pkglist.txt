@@ -27,6 +27,7 @@ imagewriter-debug
 inxi
 libpamac-aur
 libptytty
+localsend-bin
 mkinitcpio-openswap
 multilockscreen-git
 nerd-fonts-hack
@@ -48,6 +49,7 @@ qt5-styleplugins
 redsocks
 rofi-greenclip
 rxvt-unicode-pixbuf
+skippy-xd-git
 skippy-xd-git-debug
 timeshift
 tint2-git
@@ -56,6 +58,7 @@ ventoy-bin
 ventoy-bin-debug
 woeusb-ng
 xfce4-docklike-plugin
+xfce4-windowck-plugin-git
 xfce4-windowck-plugin-git-debug
 yay-bin
 yay-bin-debug
