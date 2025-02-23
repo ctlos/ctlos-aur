@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-# @Author: Alex Creio <mailcreio@gmail.com>
-# @Date:   16.05.2022 23:31
-# @Last Modified by:   creio
-# @Last Modified time: 19.05.2022 09:45
+# @Author: Alex Creio <mailcreio at gmail>
 
 repo_name=ctlos-aur
 arch=x86_64
@@ -18,6 +15,7 @@ fi
 echo "add pkg, rsync all repo"
 
 git_up() {
+  git status
   git add --all
   msg="$(date +%d.%m.%Y) Update"
   git commit -a -m "$msg"
@@ -26,7 +24,7 @@ git_up() {
 
 cd $local_repo/$arch
 ## fix github symlink
-rm $repo_name.{db,files}
+rm -rf $repo_name.{db,files}
 cp -f $repo_name.db.tar.gz $repo_name.db
 cp -f $repo_name.files.tar.gz $repo_name.files
 cd ..
