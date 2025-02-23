@@ -162,6 +162,8 @@ elif [ "$command" == "upgrade" ]; then
       aur_outdated+=("${git_outdated[@]}")
     fi
   fi
+  echo 'asd'
+  echo ${#aur_outdated[@]}
 
   if [ ${#aur_outdated[@]} -gt 0 ]; then
     repoctl rm "${aur_outdated[@]}"
