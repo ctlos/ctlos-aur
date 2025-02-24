@@ -46,6 +46,9 @@ _help() {
 - upgrade: upgrade $repo_name
     ./$sh_name upgrade
 
+- deploy: deploy $repo_name
+    ./$sh_name deploy
+
 - list: list $repo_name pkg
     ./$sh_name list
 
