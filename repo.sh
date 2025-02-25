@@ -25,6 +25,7 @@ repo_dir=$src_dir/x86_64
 
 makepkg_conf=/media/files/github/ctlos/ctlos-aur/conf/makepkg.conf
 pacman_conf=/media/files/github/ctlos/ctlos-aur/conf/pacman.conf
+ccm_conf=/media/files/github/ctlos/ctlos-aur/conf/clean-chroot-manager.conf
 
 _help() {
   cat << LOL
@@ -59,6 +60,13 @@ _help() {
     ./$sh_name uninstall
 
 LOL
+}
+
+_ccm_conf() {
+  if [[ -f $HOME/.config/clean-chroot-manager.conf ]]; then
+    mv -f $HOME/.config/clean-chroot-manager.{conf,conf.bak}
+    cp $src_dir/conf/clean-chroot-manager.conf $HOME/.config/clean-chroot-manager.conf
+  fi
 }
 
 _init() {
@@ -116,6 +124,7 @@ if [ "$command" == "add" ] && [ -n "$arg1" ]; then
   cd $src_dir/build
   ### Down src list: repoctl down -r $(cat $src_dir/pkglist.txt)
   repoctl down -r "${@:2}" || exit
+  _ccm_conf
   for pkg in "${@:2}"; do
     (
       cd $pkg
@@ -173,6 +182,7 @@ elif [ "$command" == "upgrade" ]; then
 
     cd $src_dir/build
     repoctl down -r "${aur_outdated[@]}"
+    _ccm_conf
     for pkg in "${aur_outdated[@]}"; do
       (
         cd $pkg
