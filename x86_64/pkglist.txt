@@ -31,11 +31,9 @@ nohang-git
 ob-yml-menu
 obkey-git
 oblogout-py3-git
-oh-my-zsh-git
 otb-uw_ttyp0
 pamac-aur
 pfetch
-pipe-viewer-git
 python-pulsectl
 qmplay2
 qogir-icon-theme
@@ -43,7 +41,6 @@ qt5-styleplugins
 redsocks
 rofi-greenclip
 rxvt-unicode-pixbuf
-skippy-xd-git
 skippy-xd-git-debug
 timeshift
 tint2-git
@@ -51,9 +48,7 @@ ttf-clear-sans
 ventoy-bin
 woeusb-ng
 xfce4-docklike-plugin
-xfce4-windowck-plugin-git
 xfce4-windowck-plugin-git-debug
-yay-bin
 yq2-bin
 ytfzf
 zsh-fast-syntax-highlighting-git
