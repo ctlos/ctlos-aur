@@ -8,7 +8,6 @@ betterlockscreen
 cava
 chrome-gnome-shell
 ckbcomp
-clean-chroot-manager
 clipit
 colorpicker
 downgrade
@@ -18,7 +17,6 @@ gnome-browser-connector
 gnome-shell-extension-just-perfection-desktop
 gotop-bin
 i3lock-color
-imagewriter
 inxi
 libpamac-aur
 libptytty
@@ -32,7 +30,6 @@ ob-yml-menu
 obkey-git
 oblogout-py3-git
 otb-uw_ttyp0
-pamac-aur
 pfetch
 python-pulsectl
 qmplay2
