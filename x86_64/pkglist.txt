@@ -3,12 +3,14 @@ alttab-git
 alttab-git-debug
 applet-window-buttons-git
 auto-cpufreq
+azpainter
 betterlockscreen
 cava
 chrome-gnome-shell
 ckbcomp
 clipit
 colorpicker
+downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-browser-connector
