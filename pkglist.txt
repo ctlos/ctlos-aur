@@ -5,9 +5,11 @@ applet-window-buttons-git
 auto-cpufreq
 azpainter
 betterlockscreen
+caffeine-ng
 cava
 chrome-gnome-shell
 ckbcomp
+clean-chroot-manager
 clipit
 colorpicker
 downgrade
@@ -17,6 +19,7 @@ gnome-browser-connector
 gnome-shell-extension-just-perfection-desktop
 gotop-bin
 i3lock-color
+imagewriter
 inxi
 libpamac-aur
 libptytty
@@ -29,8 +32,11 @@ nohang-git
 ob-yml-menu
 obkey-git
 oblogout-py3-git
+oh-my-zsh-git
 otb-uw_ttyp0
+pamac-aur
 pfetch
+python-ewmh
 python-pulsectl
 qmplay2
 qogir-icon-theme
@@ -38,6 +44,7 @@ qt5-styleplugins
 redsocks
 rofi-greenclip
 rxvt-unicode-pixbuf
+skippy-xd-git
 skippy-xd-git-debug
 timeshift
 tint2-git
@@ -45,7 +52,8 @@ ttf-clear-sans
 ventoy-bin
 woeusb-ng
 xfce4-docklike-plugin
-xfce4-windowck-plugin-git-debug
+xfce4-windowck-plugin-git
+yay-bin
 yq2-bin
 ytfzf
 zsh-fast-syntax-highlighting-git

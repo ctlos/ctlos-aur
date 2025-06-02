@@ -17,6 +17,8 @@ service/upgrade-aur.service
 
 # edit src_dir && repo_name
 repo.sh
+
+diff --old-line-format='%L' --unchanged-line-format='' x86_64/pkglist.txt pkglist_old.txt
 ```
 
 Help.
