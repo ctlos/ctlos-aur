@@ -115,13 +115,13 @@ _init() {
 }
 
 _repo_sync() {
-  old_dir=$PWD
+  PWD_DIR=$PWD
   cd $repo_dir
   repo-add -n -R -q $repo_name.db.tar.zst *.pkg.tar.zst
   rm -rf $repo_dir/$repo_name.{db,files}
   cp -f $repo_dir/$repo_name.db.tar.zst $repo_name.db
   cp -f $repo_dir/$repo_name.files.tar.zst $repo_name.files
-  cd $old_dir
+  cd $PWD_DIR
 }
 
 post_repo() {
