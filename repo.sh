@@ -56,6 +56,9 @@ _help() {
 - status: systemd $repo_name
     ./$sh_name status
 
+- up db: $repo_name
+    ./$sh_name db
+
 - uninstall: $repo_name
     ./$sh_name uninstall
 
@@ -113,6 +116,17 @@ _init() {
 
 post_repo() {
   sudo pacsync $repo_name >/dev/null;
+}
+
+_repo_sync() {
+  old_dir=$PWD
+  cd $repo_dir
+  repo-add -n -R -q $repo_name.db.tar.zst *.pkg.tar.zst
+  rm -rf $repo_dir/$repo_name.{db,files}
+  cp -f $repo_dir/$repo_name.db.tar.zst $repo_name.db
+  cp -f $repo_dir/$repo_name.files.tar.zst $repo_name.files
+  cd $old_dir
+  post_repo
 }
 
 list_pkg() {
@@ -272,6 +286,9 @@ elif [ "$command" == "deploy" ]; then
 
 elif [ "$command" == "init" ]; then
   _init
+
+elif [ "$command" == "db" ]; then
+  _repo_sync
 
 elif [ "$command" == "uninstall" ]; then
   echo "./$sh_name: disable systemd timer" >&2
