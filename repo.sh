@@ -114,10 +114,6 @@ _init() {
   fi
 }
 
-post_repo() {
-  sudo pacsync $repo_name >/dev/null;
-}
-
 _repo_sync() {
   old_dir=$PWD
   cd $repo_dir
@@ -126,7 +122,11 @@ _repo_sync() {
   cp -f $repo_dir/$repo_name.db.tar.zst $repo_name.db
   cp -f $repo_dir/$repo_name.files.tar.zst $repo_name.files
   cd $old_dir
-  post_repo
+}
+
+post_repo() {
+  _repo_sync
+  sudo pacsync $repo_name >/dev/null;
 }
 
 list_pkg() {
