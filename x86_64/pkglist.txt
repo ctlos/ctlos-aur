@@ -18,6 +18,7 @@ gotop-bin
 i3lock-color
 imagewriter
 inxi
+libpamac-aur
 libptytty
 localsend-bin
 multilockscreen-git
@@ -28,6 +29,7 @@ ob-yml-menu
 obkey-git
 oblogout-py3-git
 otb-uw_ttyp0
+pamac-aur
 pfetch
 python-ewmh
 python-pulsectl
@@ -43,7 +45,6 @@ tint2-git
 ttf-clear-sans
 ventoy-bin
 woeusb-ng
-xfce4-docklike-plugin
 yay-bin
 yq2-bin
 ytfzf
