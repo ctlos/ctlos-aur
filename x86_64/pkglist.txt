@@ -12,6 +12,7 @@ ckbcomp
 clean-chroot-manager
 clipit
 colorpicker
+downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-browser-connector
