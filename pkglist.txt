@@ -1,6 +1,8 @@
 adwaita-qt
 alttab
 applet-window-buttons-git
+arc-gtk-theme-git
+arc-solid-gtk-theme-git
 azpainter
 betterlockscreen
 caffeine-ng
