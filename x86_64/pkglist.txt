@@ -21,6 +21,7 @@ inxi
 libpamac-aur
 libptytty
 localsend-bin
+mkinitcpio-openswap
 multilockscreen-git
 nerd-fonts-hack
 netwmpager
