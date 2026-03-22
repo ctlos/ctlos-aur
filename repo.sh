@@ -122,7 +122,7 @@ _repo_sync() {
   rm -rf $repo_dir/$repo_name.{db,files}
   cp -f $repo_dir/$repo_name.db.tar.zst $repo_name.db
   cp -f $repo_dir/$repo_name.files.tar.zst $repo_name.files
-  rm -f *{zst,gz}.old{,.sig}
+  rm -f *.old{,.sig}
   cd $PWD_DIR
 }
 
@@ -290,7 +290,8 @@ elif [ "$command" == "init" ]; then
   _init
 
 elif [ "$command" == "db" ]; then
-  _repo_sync
+  # _repo_sync
+  post_repo
 
 elif [ "$command" == "uninstall" ]; then
   echo "./$sh_name: disable systemd timer" >&2
