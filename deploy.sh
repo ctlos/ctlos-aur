@@ -24,9 +24,9 @@ git_up() {
 
 cd $local_repo/$arch
 ## fix github symlink
-rm -rf $repo_name.{db,files}
-cp -f $repo_name.db.tar.gz $repo_name.db
-cp -f $repo_name.files.tar.gz $repo_name.files
+# rm -rf $repo_name.{db,files}
+# cp -f $repo_name.db.tar.gz $repo_name.db
+# cp -f $repo_name.files.tar.gz $repo_name.files
 cd ..
 git_up
 
