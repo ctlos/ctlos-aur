@@ -117,6 +117,7 @@ _init() {
 _repo_sync() {
   PWD_DIR=$PWD
   cd $repo_dir
+  rm -rf $repo_dir/$repo_name.*
   repo-add -n -R -q $repo_name.db.tar.zst *.pkg.tar.zst
   rm -rf $repo_dir/$repo_name.{db,files}
   cp -f $repo_dir/$repo_name.db.tar.zst $repo_name.db
