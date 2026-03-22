@@ -121,6 +121,7 @@ _repo_sync() {
   rm -rf $repo_dir/$repo_name.{db,files}
   cp -f $repo_dir/$repo_name.db.tar.zst $repo_name.db
   cp -f $repo_dir/$repo_name.files.tar.zst $repo_name.files
+  rm -f *{zst,gz}.old{,.sig}
   cd $PWD_DIR
 }
 
