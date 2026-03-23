@@ -29,10 +29,10 @@ multilockscreen-git
 netwmpager
 nohang-git
 ob-yml-menu
-obkey-git
 oblogout-py3-git
 oh-my-zsh-git
 otb-uw_ttyp0
+pamac-aur
 pfetch
 python-ewmh
 python-pulsectl
@@ -49,6 +49,7 @@ tint2-git
 ttf-clear-sans
 ventoy-bin
 woeusb-ng
+xray-bin
 yay-bin
 yq2-bin
 ytfzf
