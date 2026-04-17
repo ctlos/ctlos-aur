@@ -7,7 +7,6 @@ azpainter
 betterlockscreen
 caffeine-ng
 cava
-chrome-gnome-shell
 ckbcomp
 clean-chroot-manager
 clipit
@@ -15,7 +14,6 @@ colorpicker
 downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
-gnome-browser-connector
 gnome-shell-extension-just-perfection-desktop
 gotop-bin
 i3lock-color
