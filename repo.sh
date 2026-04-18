@@ -137,7 +137,7 @@ list_pkg() {
 }
 
 if [ "$command" == "add" ] && [ -n "$arg1" ]; then
-  mkdir $src_dir/build
+  mkdir -p $src_dir/build
   cd $src_dir/build
   ### Down src list: repoctl down -r $(cat $src_dir/pkglist.txt)
   repoctl down -r "${@:2}" || exit
@@ -146,7 +146,7 @@ if [ "$command" == "add" ] && [ -n "$arg1" ]; then
     (
       cd $pkg
       sudo ccm S
-      repoctl add *.pkg.tar.zst
+      repoctl add --no-verify *.pkg.tar.zst
       cd ..
       # rm -rf $pkg
     )
