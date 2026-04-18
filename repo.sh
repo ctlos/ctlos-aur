@@ -137,6 +137,7 @@ list_pkg() {
 }
 
 if [ "$command" == "add" ] && [ -n "$arg1" ]; then
+  mkdir $src_dir/build
   cd $src_dir/build
   ### Down src list: repoctl down -r $(cat $src_dir/pkglist.txt)
   repoctl down -r "${@:2}" || exit
@@ -145,13 +146,15 @@ if [ "$command" == "add" ] && [ -n "$arg1" ]; then
     (
       cd $pkg
       sudo ccm S
+      repoctl add *.pkg.tar.zst
       cd ..
-      rm -rf $pkg
+      # rm -rf $pkg
     )
   done
   cd $src_dir
   post_repo
   list_pkg
+  rm -rf $src_dir/build/*
   echo -e "./$sh_name install: sudo pacman -Syy "${*:2}"" >&2
 
 elif [ "$command" == "addpkg" ] && [ -n "$arg1" ]; then
