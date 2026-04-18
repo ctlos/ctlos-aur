@@ -15,10 +15,8 @@ downgrade
 firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-shell-extension-just-perfection-desktop
-gotop-bin
 i3lock-color
 imagewriter
-inxi
 libpamac-aur
 libptytty
 localsend-bin
