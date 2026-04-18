@@ -21,7 +21,6 @@ libpamac-aur
 libptytty
 localsend-bin
 mkinitcpio-openswap
-multilockscreen-git
 netwmpager
 noctalia-qs
 noctalia-shell
@@ -42,7 +41,6 @@ rofi-greenclip
 rxvt-unicode-pixbuf
 skippy-xd-git
 skippy-xd-git-debug
-timeshift
 tint2-git
 ttf-clear-sans
 ventoy-bin
