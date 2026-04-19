@@ -22,8 +22,6 @@ libptytty
 localsend-bin
 mkinitcpio-openswap
 netwmpager
-noctalia-qs
-noctalia-shell
 nohang-git
 ob-yml-menu
 oblogout-py3-git
