@@ -41,6 +41,7 @@ skippy-xd-git
 skippy-xd-git-debug
 tint2-git
 ttf-clear-sans
+ttf-weather-icons
 ventoy-bin
 woeusb-ng
 xray-bin
