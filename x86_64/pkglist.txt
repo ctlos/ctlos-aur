@@ -16,7 +16,6 @@ firefox-extension-gnome-shell-integration
 fzf-extras
 gnome-shell-extension-just-perfection-desktop
 i3lock-color
-imagewriter
 libpamac-aur
 libptytty
 localsend-bin
@@ -27,7 +26,6 @@ ob-yml-menu
 oblogout-py3-git
 oh-my-zsh-git
 otb-uw_ttyp0
-pamac-aur
 pipe-viewer-git
 python-ewmh
 python-pulsectl
