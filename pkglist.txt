@@ -26,6 +26,7 @@ ob-yml-menu
 oblogout-py3-git
 oh-my-zsh-git
 otb-uw_ttyp0
+pamac-aur
 pipe-viewer-git
 python-ewmh
 python-pulsectl
