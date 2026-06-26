@@ -30,7 +30,6 @@ pamac-aur
 pipe-viewer-git
 python-ewmh
 python-pulsectl
-qmplay2
 qogir-icon-theme
 qt5-styleplugins
 redsocks
@@ -41,7 +40,6 @@ skippy-xd-git-debug
 tint2-git
 ttf-clear-sans
 ttf-weather-icons
-ventoy-bin
 woeusb-ng
 xray-bin
 yay-bin
