@@ -6,7 +6,6 @@ arc-solid-gtk-theme-git
 azpainter
 betterlockscreen
 caffeine-ng
-cava
 ckbcomp
 clean-chroot-manager
 clipit
@@ -40,9 +39,9 @@ skippy-xd-git-debug
 tint2-git
 ttf-clear-sans
 ttf-weather-icons
+ventoy-bin
 woeusb-ng
 xray-bin
 yay-bin
 yq2-bin
-ytfzf
 zsh-fast-syntax-highlighting
