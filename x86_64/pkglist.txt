@@ -6,7 +6,6 @@ arc-solid-gtk-theme-git
 azpainter
 betterlockscreen
 caffeine-ng
-ckbcomp
 clean-chroot-manager
 clipit
 colorpicker
@@ -17,7 +16,6 @@ gnome-shell-extension-just-perfection-desktop
 i3lock-color
 libpamac-aur
 libptytty
-localsend-bin
 mkinitcpio-openswap
 netwmpager
 nohang-git
