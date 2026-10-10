@@ -6,7 +6,6 @@ arc-solid-gtk-theme-git
 azpainter
 betterlockscreen
 caffeine-ng
-clean-chroot-manager
 clipit
 colorpicker
 downgrade
@@ -37,7 +36,6 @@ skippy-xd-git-debug
 tint2-git
 ttf-clear-sans
 ttf-weather-icons
-ventoy-bin
 woeusb-ng
 xray-bin
 yay-bin
